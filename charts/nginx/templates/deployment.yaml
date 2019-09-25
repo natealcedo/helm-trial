@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: {{ .Values.namespace }}}
   name: {{ include "nginx.fullname" . }}
   labels:
 {{ include "nginx.labels" . | indent 4 }}
@@ -12,6 +13,7 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
+      namespace: {{ .Values.namespace }}}
       labels:
         app.kubernetes.io/name: {{ include "nginx.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
